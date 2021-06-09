@@ -63,9 +63,9 @@ def eval(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='PyTorch ArcFace Training')
-    parser.add_argument('--gpu_id', type=int, default=0, help='local_rank')
-    parser.add_argument('--model_folder', type=str, default="output/emore_random_resnet", help='local_rank')
-    parser.add_argument('--output_folder', type=str, default="output/emore_random_resnet", help='local_rank')
+    parser.add_argument('--gpu_id', type=int, default=0, help='gpu id')
+    parser.add_argument('--model_folder', type=str, default="output/emore_random_resnet", help="pretrained model folder path")
+    parser.add_argument('--output_folder', type=str, default="output/emore_random_resnet", help='save log file path')
 
     args_ = parser.parse_args()
     eval(args_)
