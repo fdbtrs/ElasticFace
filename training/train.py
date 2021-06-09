@@ -8,16 +8,16 @@ import torch.distributed as dist
 import torch.nn.functional as F
 import torch.utils.data.distributed
 from torch.nn.utils import clip_grad_norm_
-import backbones
-import losses
-from backbones import iresnet100
-from backbones.mobilefacenet import MobileFaceNet
-from config import config as cfg
-from dataset import MXFaceDataset, DataLoaderX
-from partial_fc import PartialFC
-from utils.utils_callbacks import CallBackVerification, CallBackLogging, CallBackModelCheckpoint
-from utils.utils_logging import AverageMeter, init_logging
-from utils.utils_amp import MaxClipGradScaler
+import training.backbones
+import training.losses
+from training.backbones import iresnet100
+from training.backbones.mobilefacenet import MobileFaceNet
+from training.config import config as cfg
+from training.dataset import MXFaceDataset, DataLoaderX
+from training.partial_fc import PartialFC
+from training.utils.utils_callbacks import CallBackVerification, CallBackLogging, CallBackModelCheckpoint
+from training.utils.utils_logging import AverageMeter, init_logging
+from training.utils.utils_amp import MaxClipGradScaler
 
 torch.backends.cudnn.benchmark = True
 
