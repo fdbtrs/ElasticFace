@@ -19,8 +19,8 @@ See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-marg
 
 
 ### To-do 
-- [] Add evaluation script 
-- [] Add evaluation samples
+- [ ] Add evaluation script 
+- [ ] Add evaluation samples
 
 
 If you use any of the code provided in this repository, please cite the following paper:
