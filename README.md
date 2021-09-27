@@ -14,11 +14,16 @@ Paper on arxiv: [arxiv](https://arxiv.org/pdf/2109.09416.pdf)
 | ElasticFace-Arc      |[log file](https://cloud-ext.igd.fraunhofer.de/s/789rCyTxFr28SsG) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/44iGb2XxqZa2aDA) |
 | ElasticFace-Cos  |[log file](https://cloud-ext.igd.fraunhofer.de/s/x8RQfQj3tkFfRFD) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/G45JejZpxgjRBde) |
 
+Evaluation result:
+See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-margin-loss-for-deep-face)
+
+
+### To-do 
+- [] Add evaluation script 
+- [] Add evaluation samples
 
 
 If you use any of the code provided in this repository, please cite the following paper:
-
-
 ## Citation
 ```
 @misc{boutros2021elasticface,
