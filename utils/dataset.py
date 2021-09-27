@@ -8,7 +8,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
-
+import cv2
 
 class BackgroundGenerator(threading.Thread):
     def __init__(self, generator, local_rank, max_prefetch=6):
@@ -99,6 +99,47 @@ class MXFaceDataset(Dataset):
             label = label[0]
         label = torch.tensor(label, dtype=torch.long)
         sample = mx.image.imdecode(img).asnumpy()
+        if self.transform is not None:
+            sample = self.transform(sample)
+        return sample, label
+
+    def __len__(self):
+        return len(self.imgidx)
+class FaceDatasetFolder(Dataset):
+    def __init__(self, root_dir, local_rank):
+        super(FaceDatasetFolder, self).__init__()
+        self.transform = transforms.Compose(
+            [transforms.ToPILImage(),
+             transforms.RandomHorizontalFlip(),
+             transforms.ToTensor(),
+             transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+             ])
+        self.root_dir = root_dir
+        self.local_rank = local_rank
+        self.imgidx, self.labels=self.scan(root_dir)
+    def scan(self,root):
+        imgidex=[]
+        labels=[]
+        lb=-1
+        list_dir=os.listdir(root)
+        list_dir.sort()
+        for l in list_dir:
+            images=os.listdir(os.path.join(root,l))
+            lb += 1
+            for img in images:
+                imgidex.append(os.path.join(l,img))
+                labels.append(lb)
+        return imgidex,labels
+    def readImage(self,path):
+        return cv2.imread(os.path.join(self.root_dir,path))
+
+    def __getitem__(self, index):
+        path = self.imgidx[index]
+        img=self.readImage(path)
+        label = self.labels[index]
+        label = torch.tensor(label, dtype=torch.long)
+        sample = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+
         if self.transform is not None:
             sample = self.transform(sample)
         return sample, label

@@ -6,3 +6,29 @@ Paper on arxiv: [arxiv](https://arxiv.org/pdf/2109.09416.pdf)
 
 ![evaluation](https://raw.githubusercontent.com/fdbtrs/ElasticFace/main/images/margins.png)
 
+
+
+
+| Model  | Log file| Pretrained model|
+| ------------- | ------------- |------------- |
+| ElasticFace-Arc      |[log file](https://cloud-ext.igd.fraunhofer.de/s/789rCyTxFr28SsG) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/44iGb2XxqZa2aDA) |
+| ElasticFace-Cos  |[log file](https://cloud-ext.igd.fraunhofer.de/s/x8RQfQj3tkFfRFD) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/G45JejZpxgjRBde) |
+
+
+
+If you use any of the code provided in this repository, please cite the following paper:
+
+
+## Citation
+```
+@misc{boutros2021elasticface,
+      title={ElasticFace: Elastic Margin Loss for Deep Face Recognition}, 
+      author={Fadi Boutros and Naser Damer and Florian Kirchbuchner and Arjan Kuijper},
+      year={2021},
+      eprint={2109.09416},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+
+
+```

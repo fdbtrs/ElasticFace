@@ -1,20 +1,90 @@
 import torch
 from torch import nn
+import torch.nn.functional as F
 
-from torch.autograd import Variable
+from backbones.activation import get_activation_layer
 
-import numpy as np
+
+
+
+class DropBlock2D(nn.Module):
+    r"""Randomly zeroes 2D spatial blocks of the input tensor.
+    As described in the paper
+    `DropBlock: A regularization method for convolutional networks`_ ,
+    dropping whole blocks of feature map allows to remove semantic
+    information as compared to regular dropout.
+    Args:
+        drop_prob (float): probability of an element to be dropped.
+        block_size (int): size of the block to drop
+    Shape:
+        - Input: `(N, C, H, W)`
+        - Output: `(N, C, H, W)`
+    .. _DropBlock: A regularization method for convolutional networks:
+       https://arxiv.org/abs/1810.12890
+    """
+
+    def __init__(self, drop_prob, block_size):
+        super(DropBlock2D, self).__init__()
+
+        self.drop_prob = drop_prob
+        self.block_size = block_size
+
+    def forward(self, x):
+        # shape: (bsize, channels, height, width)
+
+        assert x.dim() == 4, \
+            "Expected input with 4 dimensions (bsize, channels, height, width)"
+
+        if not self.training or self.drop_prob == 0.:
+            return x
+        else:
+            # get gamma value
+            gamma = self._compute_gamma(x)
+
+            # sample mask
+            mask = (torch.rand(x.shape[0], *x.shape[2:]) < gamma).float()
+
+            # place mask on input device
+            mask = mask.to(x.device)
+
+            # compute block mask
+            block_mask = self._compute_block_mask(mask)
+
+            # apply block mask
+            out = x * block_mask[:, None, :, :]
+
+            # scale output
+            out = out * block_mask.numel() / block_mask.sum()
+
+            return out
+
+    def _compute_block_mask(self, mask):
+        block_mask = F.max_pool2d(input=mask[:, None, :, :],
+                                  kernel_size=(self.block_size, self.block_size),
+                                  stride=(1,1),
+                                  padding=self.block_size//2)
+        if self.block_size % 2 == 0:
+            block_mask = block_mask[:, :, :-1, :-1]
+
+        block_mask = 1 - block_mask.squeeze(1)
+
+        return block_mask
+
+    def _compute_gamma(self, x):
+        return self.drop_prob / (self.block_size**2)
 
 def round_channels(channels,
                    divisor=8):
     """
     Round weighted channel number (make divisible operation).
+
     Parameters:
     ----------
     channels : int or float
         Original number of channels.
     divisor : int, default 8
         Alignment value.
+
     Returns:
     -------
     int
@@ -32,6 +102,7 @@ def conv1x1(in_channels,
             bias=False):
     """
     Convolution 1x1 layer.
+
     Parameters:
     ----------
     in_channels : int
@@ -65,6 +136,7 @@ def conv3x3(in_channels,
             bias=False):
     """
     Convolution 3x3 layer.
+
     Parameters:
     ----------
     in_channels : int
@@ -106,6 +178,7 @@ def depthwise_conv3x3(channels,
                       bias=False):
     """
     Depthwise convolution 3x3 layer.
+
     Parameters:
     ----------
     channels : int
@@ -131,6 +204,7 @@ def depthwise_conv3x3(channels,
 class ConvBlock(nn.Module):
     """
     Standard convolution block with Batch normalization and activation.
+
     Parameters:
     ----------
     in_channels : int
@@ -213,6 +287,7 @@ def conv1x1_block(in_channels,
                   activation=(lambda: nn.ReLU(inplace=True))):
     """
     1x1 version of the standard convolution block.
+
     Parameters:
     ----------
     in_channels : int
@@ -258,6 +333,7 @@ def conv3x3_block(in_channels,
                   activation=(lambda: nn.ReLU(inplace=True))):
     """
     3x3 version of the standard convolution block.
+
     Parameters:
     ----------
     in_channels : int
@@ -296,6 +372,7 @@ def conv3x3_block(in_channels,
 class DwsConvBlock(nn.Module):
     """
     Depthwise separable convolution block with BatchNorms and activations at each convolution layers.
+
     Parameters:
     ----------
     in_channels : int
@@ -395,12 +472,14 @@ def channel_shuffle2(x,
     """
     Channel shuffle operation from 'ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices,'
     https://arxiv.org/abs/1707.01083. The alternative version.
+
     Parameters:
     ----------
     x : Tensor
         Input tensor.
     groups : int
         Number of groups.
+
     Returns:
     -------
     Tensor
@@ -423,106 +502,3 @@ def _calc_width(net):
     for param in net_params:
         weight_count += np.prod(param.size())
     return weight_count
-
-def flops_to_string(flops, units='GFLOPS', precision=4):
-    if units == 'GFLOPS':
-        return str(round(flops / 10.**9, precision)) + ' ' + units
-    elif units == 'MFLOPS':
-        return str(round(flops / 10.**6, precision)) + ' ' + units
-    elif units == 'KFLOPS':
-        return str(round(flops / 10.**3, precision)) + ' ' + units
-    else:
-        return str(flops) + ' FLOPS'
-
-
-
-
-def count_model_flops(model, input_res=[112, 112], multiply_adds=True):
-    list_conv = []
-
-    def conv_hook(self, input, output):
-        batch_size, input_channels, input_height, input_width = input[0].size()
-        output_channels, output_height, output_width = output[0].size()
-
-        kernel_ops = self.kernel_size[0] * self.kernel_size[1] * (self.in_channels / self.groups)
-        bias_ops = 1 if self.bias is not None else 0
-
-        params = output_channels * (kernel_ops + bias_ops)
-        flops = (kernel_ops * (
-            2 if multiply_adds else 1) + bias_ops) * output_channels * output_height * output_width * batch_size
-
-        list_conv.append(flops)
-
-    list_linear = []
-
-    def linear_hook(self, input, output):
-        batch_size = input[0].size(0) if input[0].dim() == 2 else 1
-
-        weight_ops = self.weight.nelement() * (2 if multiply_adds else 1)
-        if self.bias is not None:
-            bias_ops = self.bias.nelement() if self.bias.nelement() else 0
-            flops = batch_size * (weight_ops + bias_ops)
-        else:
-            flops = batch_size * weight_ops
-        list_linear.append(flops)
-
-    list_bn = []
-
-    def bn_hook(self, input, output):
-        list_bn.append(input[0].nelement() * 2)
-
-    list_relu = []
-
-    def relu_hook(self, input, output):
-        list_relu.append(input[0].nelement())
-
-    list_pooling = []
-
-    def pooling_hook(self, input, output):
-        batch_size, input_channels, input_height, input_width = input[0].size()
-        output_channels, output_height, output_width = output[0].size()
-
-        kernel_ops = self.kernel_size * self.kernel_size
-        bias_ops = 0
-        params = 0
-        flops = (kernel_ops + bias_ops) * output_channels * output_height * output_width * batch_size
-
-        list_pooling.append(flops)
-    def pooling_hook_ad(self, input, output):
-        batch_size, input_channels, input_height, input_width = input[0].size()
-        input = input[0]
-        flops =  int(np.prod(input.shape))
-        list_pooling.append(flops)
-
-    handles = []
-
-    def foo(net):
-        childrens = list(net.children())
-        if not childrens:
-            if isinstance(net, torch.nn.Conv2d) or isinstance(net, torch.nn.ConvTranspose2d):
-                handles.append(net.register_forward_hook(conv_hook))
-            elif isinstance(net, torch.nn.Linear):
-                handles.append(net.register_forward_hook(linear_hook))
-            elif isinstance(net, torch.nn.BatchNorm2d) or isinstance(net, torch.nn.BatchNorm1d):
-                handles.append(net.register_forward_hook(bn_hook))
-            elif isinstance(net, torch.nn.ReLU) or isinstance(net, torch.nn.PReLU) or isinstance(net,torch.nn.Sigmoid) or isinstance(net, HSwish) or isinstance(net, Swish):
-                handles.append(net.register_forward_hook(relu_hook))
-            elif isinstance(net, torch.nn.MaxPool2d) or isinstance(net, torch.nn.AvgPool2d):
-                handles.append(net.register_forward_hook(pooling_hook))
-            elif isinstance(net, torch.nn.AdaptiveAvgPool2d):
-                handles.append(net.register_forward_hook(pooling_hook_ad))
-            else:
-                print("warning" + str(net))
-            return
-        for c in childrens:
-            foo(c)
-
-    model.eval()
-    foo(model)
-    input = Variable(torch.rand(3, input_res[1], input_res[0]).unsqueeze(0), requires_grad=True)
-    out = model(input)
-    total_flops = (sum(list_conv) + sum(list_linear) + sum(list_bn) + sum(list_relu) + sum(list_pooling))
-    for h in handles:
-        h.remove()
-    model.train()
-    return flops_to_string(total_flops)
