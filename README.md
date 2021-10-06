@@ -44,5 +44,5 @@ If you use any of the code provided in this repository, please cite the followin
 ```
 This project is licensed under the terms of the Attribution-NonCommercial-ShareAlike 4.0 
 International (CC BY-NC-SA 4.0) license. 
-Copyright (c) 2020 Fraunhofer Institute for Computer Graphics Research IGD Darmstadt
+Copyright (c) 2021 Fraunhofer Institute for Computer Graphics Research IGD Darmstadt
 ```
