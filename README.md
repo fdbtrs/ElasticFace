@@ -23,9 +23,11 @@ See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-marg
 ### Face recognition  model training 
 Model training:
 In the paper, we employ MS1MV2 as the training dataset which can be downloaded from InsightFace (MS1M-ArcFace in DataZoo)
+
 Download MS1MV2 dataset from [insightface](https://github.com/deepinsight/insightface/tree/master/recognition/_datasets_) on strictly follow the licence distribution
 
 Unzip the dataset and place it in the data folder
+
 Set the config.output and config.loss in the config/config.py 
 
 
@@ -33,7 +35,7 @@ Set the config.output and config.loss in the config/config.py
 All code has been trained and tested using  Pytorch 1.7.1
 
 ## Face recognition evaluation
-##### evaluation on LFW, AgeDb-30, CPLFW, CALFW and CFP-FP: 
+##### Evaluation on LFW, AgeDb-30, CPLFW, CALFW and CFP-FP: 
 1. download the data from their offical webpages.
 2. alternative: The evaluation datasets are available in the training dataset package as bin file
 3. set the config.rec to dataset folder e.g. data/faces_emore
@@ -43,5 +45,9 @@ All code has been trained and tested using  Pytorch 1.7.1
 7. run eval/evaluation.py
 8. the output is test.log contains the evaluation results over all epochs
 
+##### Evaluation on IJB-B and IJB-C: 
+
+1. Please apply for permissions from NIST before your usage [NIST_Request](https://nigos.nist.gov/datasets/ijbc/request)
+2. run eval/IJB/runIJBEval.sh
 ### To-do 
 - [x] Add evaluation script 
