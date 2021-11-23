@@ -11,16 +11,41 @@ Paper on arxiv: [arxiv](https://arxiv.org/pdf/2109.09416.pdf)
 
 | Model  | Log file| Pretrained model|
 | ------------- | ------------- |------------- |
-| ElasticFace-Arc      |[log file](https://cloud-ext.igd.fraunhofer.de/s/789rCyTxFr28SsG) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/44iGb2XxqZa2aDA) |
-| ElasticFace-Cos  |[log file](https://cloud-ext.igd.fraunhofer.de/s/x8RQfQj3tkFfRFD) |[pretrained-mode](https://cloud-ext.igd.fraunhofer.de/s/G45JejZpxgjRBde) |
+| ElasticFace-Arc      |[log file](https://drive.google.com/file/d/1jGm6rHh-jJ40c34u5eXBgAhR3u4KHblH/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1q3ws_BQLmgXyiy2msvHummXq4pRqc1rx?usp=sharing) |
+| ElasticFace-Cos  |[log file](https://drive.google.com/file/d/1XgfEQgEabinH--VhIusWQ8Js43vz1vK0/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1ZiLLZXQ1jMzFwMGhYjtMwcdHmuedQb-2?usp=sharing) |
+| ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1cWphaOqgCtmJ8zgVfnMXh0mVl6EqQZNd/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1sf-fNV5CeSpWuFj6Hkwp7Js8SBXjbPo_?usp=sharing) |
+| ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1aqCN5yfzgGijJLg2hcrsW3fvwHeHNu6W/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/19LXrjVNt60JBZP7JqsvOSWMwGLGrcJl5?usp=sharing) |
 
 Evaluation result:
 See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-margin-loss-for-deep-face)
 
 
+
+### Face recognition  model training 
+Model training:
+In the paper, we employ MS1MV2 as the training dataset which can be downloaded from InsightFace (MS1M-ArcFace in DataZoo)
+Download MS1MV2 dataset from [insightface](https://github.com/deepinsight/insightface/tree/master/recognition/_datasets_) on strictly follow the licence distribution
+
+Unzip the dataset and place it in the data folder
+Set the config.output and config.loss in the config/config.py 
+
+
+
+All code has been trained and tested using  Pytorch 1.7.1
+
+## Face recognition evaluation
+##### evaluation on LFW, AgeDb-30, CPLFW, CALFW and CFP-FP: 
+1. download the data from their offical webpages.
+2. alternative: The evaluation datasets are available in the training dataset package as bin file
+3. set the config.rec to dataset folder e.g. data/faces_emore
+4. set the config.val_targets for list of the evaluation dataset
+5. download the pretrained model from link the previous table
+6. set the config.output to path to pretrained model weights
+7. run eval/evaluation.py
+8. the output is test.log contains the evaluation results over all epochs
+
 ### To-do 
-- [ ] Add evaluation script 
-- [ ] Add evaluation samples
+- [x] Add evaluation script 
 
 
 If you use any of the code provided in this repository, please cite the following paper:

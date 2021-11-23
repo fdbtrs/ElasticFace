@@ -14,7 +14,25 @@ config.m=0.50
 config.std=0.05
 
 
-config.loss="ElasticArcFace"  #  Option : ElasticArcFace, ArcFace, ElasticCosFace, CosFace, MLLoss
+config.loss="ElasticArcFace"  #  Option : ElasticArcFace, ArcFace, ElasticCosFace, CosFace, MLLoss, ElasticArcFacePlus, ElasticCosFacePlus
+
+if (config.loss=="ElasticArcFacePlus"):
+    config.s = 64.0
+    config.m = 0.50
+    config.std = 0.0175
+elif (config.loss=="ElasticArcFace"):
+    config.s = 64.0
+    config.m = 0.50
+    config.std = 0.05
+if (config.loss=="ElasticCosFacePlus"):
+    config.s = 64.0
+    config.m = 0.35
+    config.std = 0.02
+elif (config.loss=="ElasticCosFace"):
+    config.s = 64.0
+    config.m = 0.35
+    config.std = 0.05
+
 
 # type of network to train [iresnet100 | iresnet50]
 config.network = "iresnet100"

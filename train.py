@@ -76,8 +76,14 @@ def main(args):
     # get header
     if cfg.loss == "ElasticArcFace":
         header = losses.ElasticArcFace(in_features=cfg.embedding_size, out_features=cfg.num_classes, s=cfg.s, m=cfg.m,std=cfg.std).to(local_rank)
+    elif cfg.loss == "ElasticArcFacePlus":
+        header = losses.ElasticArcFace(in_features=cfg.embedding_size, out_features=cfg.num_classes, s=cfg.s, m=cfg.m,
+                                       std=cfg.std, plus=True).to(local_rank)
     elif cfg.loss == "ElasticCosFace":
         header = losses.ElasticCosFace(in_features=cfg.embedding_size, out_features=cfg.num_classes, s=cfg.s, m=cfg.m,std=cfg.std).to(local_rank)
+    elif cfg.loss == "ElasticCosFacePlus":
+        header = losses.ElasticCosFace(in_features=cfg.embedding_size, out_features=cfg.num_classes, s=cfg.s, m=cfg.m,
+                                       std=cfg.std, plus=True).to(local_rank)
     elif cfg.loss == "ArcFace":
         header = losses.ArcFace(in_features=cfg.embedding_size, out_features=cfg.num_classes, s=cfg.s, m=cfg.m).to(local_rank)
     elif cfg.loss == "CosFace":
