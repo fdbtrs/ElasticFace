@@ -10,10 +10,10 @@
 
 | Model  | Log file| Pretrained model|
 | ------------- | ------------- |------------- |
-| ElasticFace-Arc      |[log file](https://drive.google.com/file/d/1jGm6rHh-jJ40c34u5eXBgAhR3u4KHblH/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1q3ws_BQLmgXyiy2msvHummXq4pRqc1rx?usp=sharing) |
-| ElasticFace-Cos  |[log file](https://drive.google.com/file/d/1XgfEQgEabinH--VhIusWQ8Js43vz1vK0/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1ZiLLZXQ1jMzFwMGhYjtMwcdHmuedQb-2?usp=sharing) |
-| ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1cWphaOqgCtmJ8zgVfnMXh0mVl6EqQZNd/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1sf-fNV5CeSpWuFj6Hkwp7Js8SBXjbPo_?usp=sharing) |
-| ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1aqCN5yfzgGijJLg2hcrsW3fvwHeHNu6W/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/19LXrjVNt60JBZP7JqsvOSWMwGLGrcJl5?usp=sharing) |
+| ElasticFace-Arc      |[log file](https://drive.google.com/file/d/1sUiCqBaKsWYj4ul5VbDJnWjqoLJmX-Yv/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1KLuqtHSIQNMk5S7aH2fpnNnsQyMjuE66?usp=sharing) |
+| ElasticFace-Cos  |[log file](https://drive.google.com/file/d/16t8ea684TZIe1Z4__d09qr83RxZodh4k/view?usp=sharingg) |[pretrained-mode](https://drive.google.com/drive/folders/1TRmN9FXBPJlHWt5BxnhxP8DIOQ74VuF2?usp=sharing) |
+| ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1s9pyve_bPxlywBQF1Ad7jBpElnrEocsi/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1nKySFrEPR-fxZa8f3kkLryvDNucEUvgX?usp=sharing) |
+| ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1Om2tqcd1DKHKl_4vYQ-1DxPlvW9_08cZ/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1h9e8VVQAp9kpSK6k94zyL7uGTUqXGuHK?usp=sharing) |
 
 Evaluation result:
 See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-margin-loss-for-deep-face)
