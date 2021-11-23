@@ -2,7 +2,6 @@
 
 ## This is the official repository of the paper:
 #### ElasticFace: Elastic Margin Loss for Deep Face Recognition
-Paper on arxiv: [arxiv](https://arxiv.org/pdf/2109.09416.pdf)
 
 ![evaluation](https://raw.githubusercontent.com/fdbtrs/ElasticFace/main/images/margins.png)
 
@@ -46,28 +45,3 @@ All code has been trained and tested using  Pytorch 1.7.1
 
 ### To-do 
 - [x] Add evaluation script 
-
-
-If you use any of the code provided in this repository, please cite the following paper:
-## Citation
-```
-@misc{boutros2021elasticface,
-      title={ElasticFace: Elastic Margin Loss for Deep Face Recognition}, 
-      author={Fadi Boutros and Naser Damer and Florian Kirchbuchner and Arjan Kuijper},
-      year={2021},
-      eprint={2109.09416},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-
-
-```
-
-
-## License
-
-```
-This project is licensed under the terms of the Attribution-NonCommercial-ShareAlike 4.0 
-International (CC BY-NC-SA 4.0) license. 
-Copyright (c) 2021 Fraunhofer Institute for Computer Graphics Research IGD Darmstadt
-```
