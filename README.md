@@ -29,8 +29,12 @@ Unzip the dataset and place it in the data folder
 Set the config.output and config.loss in the config/config.py 
 
 
+Intall the requirement from requirement.txt
 
-All code has been trained and tested using  Pytorch 1.7.1
+pip install -r requirements.txt
+
+All code are trained and tested using PyTorch 1.7.1
+Details are under (Torch)[https://pytorch.org/get-started/locally/]
 
 ## Face recognition evaluation
 ##### Evaluation on LFW, AgeDb-30, CPLFW, CALFW and CFP-FP: 
