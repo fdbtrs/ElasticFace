@@ -40,7 +40,7 @@ config.SE=False # SEModule
 
 
 if config.dataset == "emoreIresNet":
-    config.rec = "/data/psiebke/faces_emore"
+    config.rec = "./data/faces_emore"
     config.num_classes = 85742
     config.num_image = 5822653
     config.num_epoch =  26
@@ -53,7 +53,7 @@ if config.dataset == "emoreIresNet":
     config.lr_func = lr_step_func
 
 elif config.dataset == "webface":
-    config.rec = "/data/fboutros/faces_webface_112x112"
+    config.rec = "./data/faces_webface_112x112"
     config.num_classes = 10572
     config.num_image = 501195
     config.num_epoch = 40   #  [22, 30, 35]

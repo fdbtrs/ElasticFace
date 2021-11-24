@@ -4,7 +4,7 @@ import os
 #import cv2
 import sys
 import torch
-sys.path.append('/home/fboutros/ElasticFace')
+sys.path.append('./ElasticFace')
 
 from utils.utils_callbacks import CallBackVerification
 from utils.utils_logging import init_logging
