@@ -15,8 +15,6 @@
 | ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1s9pyve_bPxlywBQF1Ad7jBpElnrEocsi/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1nKySFrEPR-fxZa8f3kkLryvDNucEUvgX?usp=sharing) |
 | ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1Om2tqcd1DKHKl_4vYQ-1DxPlvW9_08cZ/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1h9e8VVQAp9kpSK6k94zyL7uGTUqXGuHK?usp=sharing) |
 
-Evaluation result:
-See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-margin-loss-for-deep-face)
 
 
 
