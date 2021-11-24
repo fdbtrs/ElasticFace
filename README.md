@@ -36,6 +36,8 @@ pip install -r requirements.txt
 All code are trained and tested using PyTorch 1.7.1
 Details are under (Torch)[https://pytorch.org/get-started/locally/]
 
+run ./run.sh
+
 ## Face recognition evaluation
 ##### Evaluation on LFW, AgeDb-30, CPLFW, CALFW and CFP-FP: 
 1. download the data from their offical webpages.
