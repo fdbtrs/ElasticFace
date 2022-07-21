@@ -51,13 +51,13 @@ All code has been trained and tested using  Pytorch 1.7.1
 If you use any of the code provided in this repository, please cite the following paper:
 ## Citation
 ```
-@misc{boutros2021elasticface,
-      title={ElasticFace: Elastic Margin Loss for Deep Face Recognition}, 
-      author={Fadi Boutros and Naser Damer and Florian Kirchbuchner and Arjan Kuijper},
-      year={2021},
-      eprint={2109.09416},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Boutros_2022_CVPR,
+    author    = {Boutros, Fadi and Damer, Naser and Kirchbuchner, Florian and Kuijper, Arjan},
+    title     = {ElasticFace: Elastic Margin Loss for Deep Face Recognition},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+    month     = {June},
+    year      = {2022},
+    pages     = {1578-1587}
 }
 
 
