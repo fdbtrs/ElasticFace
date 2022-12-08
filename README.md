@@ -9,12 +9,12 @@ Paper on arxiv: [arxiv](https://arxiv.org/pdf/2109.09416.pdf)
 
 
 
-| Model  | Log file| Pretrained model|
+| Model  | Log file| Pretrained model| checkpoint
 | ------------- | ------------- |------------- |
-| ElasticFace-Arc      |[log file](https://drive.google.com/file/d/1jGm6rHh-jJ40c34u5eXBgAhR3u4KHblH/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1q3ws_BQLmgXyiy2msvHummXq4pRqc1rx?usp=sharing) |
-| ElasticFace-Cos  |[log file](https://drive.google.com/file/d/1XgfEQgEabinH--VhIusWQ8Js43vz1vK0/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1ZiLLZXQ1jMzFwMGhYjtMwcdHmuedQb-2?usp=sharing) |
-| ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1cWphaOqgCtmJ8zgVfnMXh0mVl6EqQZNd/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1sf-fNV5CeSpWuFj6Hkwp7Js8SBXjbPo_?usp=sharing) |
-| ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1aqCN5yfzgGijJLg2hcrsW3fvwHeHNu6W/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/19LXrjVNt60JBZP7JqsvOSWMwGLGrcJl5?usp=sharing) |
+| ElasticFace-Arc      |[log file](https://drive.google.com/file/d/1jGm6rHh-jJ40c34u5eXBgAhR3u4KHblH/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1q3ws_BQLmgXyiy2msvHummXq4pRqc1rx?usp=sharing) | 295672backbone.pth |
+| ElasticFace-Cos  |[log file](https://drive.google.com/file/d/1XgfEQgEabinH--VhIusWQ8Js43vz1vK0/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1ZiLLZXQ1jMzFwMGhYjtMwcdHmuedQb-2?usp=sharing) | 295672backbone.pth |
+| ElasticFace-Arc+  |[log file](https://drive.google.com/file/d/1cWphaOqgCtmJ8zgVfnMXh0mVl6EqQZNd/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/1sf-fNV5CeSpWuFj6Hkwp7Js8SBXjbPo_?usp=sharing) | 295672backbone.pth |
+| ElasticFace-Cos+  |[log file](https://drive.google.com/file/d/1aqCN5yfzgGijJLg2hcrsW3fvwHeHNu6W/view?usp=sharing) |[pretrained-mode](https://drive.google.com/drive/folders/19LXrjVNt60JBZP7JqsvOSWMwGLGrcJl5?usp=sharing) | 295672backbone.pth |
 
 Evaluation result:
 See: [Paper with code](https://paperswithcode.com/paper/elasticface-elastic-margin-loss-for-deep-face)
